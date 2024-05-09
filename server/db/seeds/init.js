@@ -9,7 +9,7 @@ exports.seed = async (knex) => {
 
   await knex.raw('ALTER SEQUENCE users_id_seq RESTART WITH 1');
 
-  await User.create('cool_cat', '1234');
-  await User.create('l33t-guy', '1234');
-  await User.create('wowow', '1234');
+  await User.create('cool_cat', '1234', 'test123@test.com', 'Cool', 'Cat');
+  await User.create('l33t-guy', '1234', 'test456@test.com', 'Leet', 'Guy');
+  await User.create('wowow', '1234', 'test789@test.com', 'Wow', 'Wow');
 };

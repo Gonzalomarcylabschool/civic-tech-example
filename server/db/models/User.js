@@ -8,10 +8,15 @@ class User {
   // Instead, it is used by each of the User static methods to hide the hashed
   // password of users before sending user data to the client. Since #passwordHash
   // is private, only the isValidPassword instance method can access that value.
-  constructor({ id, username, password_hash }) {
+  constructor({ id, username, password_hash, email, first_name, last_name }) {
     this.id = id;
     this.username = username;
     this.#passwordHash = password_hash;
+    this.createdAt = new Date();
+    this.updatedAt = new Date();
+    this.email = email;
+    this.firstName = first_name;
+    this.lastName = last_name;
   }
 
   // This instance method takes in a plain-text password and returns true if it matches
@@ -41,32 +46,56 @@ class User {
     return user ? new User(user) : null;
   }
 
-  static async create(username, password) {
+  static async create(username, password, email, firstName, lastName) {
     // hash the plain-text password using bcrypt before storing it in the database
     const passwordHash = await authUtils.hashPassword(password);
 
-    const query = `INSERT INTO users (username, password_hash)
+    const query = `INSERT INTO users (username, password_hash, email, first_name, last_name)
       VALUES (?, ?) RETURNING *`;
-    const { rows } = await knex.raw(query, [username, passwordHash]);
+    const { rows } = await knex.raw(query, [username, passwordHash, email, firstName, lastName]);
     const user = rows[0];
     return new User(user);
   }
 
   // this is an instance method that we can use to update
-  static async update(id, username) { // dynamic queries are easier if you add more properties
+  static async updateUserName(id, username) {
     const query = `
       UPDATE users
       SET username=?
       WHERE id=?
       RETURNING *
-    `
-    const { rows } = await knex.raw(query, [username, id])
+    `;
+    const { rows } = await knex.raw(query, [username, id]);
     const updatedUser = rows[0];
     return updatedUser ? new User(updatedUser) : null;
-  };
+  }
+
+  static async updateEmail(id, email) {
+    const query = `
+      UPDATE users
+      SET email=?
+      WHERE id=?
+      RETURNING *
+    `;
+    const { rows } = await knex.raw(query, [email, id]);
+    const updatedUser = rows[0];
+    return updatedUser ? new User(updatedUser) : null;
+  }
+
+  static async updateName(id, firstName, lastName) {
+    const query = `
+      UPDATE users
+      SET first_name=?, last_name=?
+      WHERE id=?
+      RETURNING *
+    `;
+    const { rows } = await knex.raw(query, [firstName, lastName, id]);
+    const updatedUser = rows[0];
+    return updatedUser ? new User(updatedUser) : null;
+  }
 
   static async deleteAll() {
-    return knex('users').del()
+    return knex('users').del();
   }
 }
 
