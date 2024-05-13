@@ -1,6 +1,9 @@
+import '../index.css';
 export default function HomePage() {
-  return <>
-    <h1>Home</h1>
-    <p>Put something interesting here!</p>
-  </>;
-}
+  return <main id='unique-page'>
+  <section id='homeId'>
+    <h1>Welcome to the Civic Tech Example!</h1>
+  </section>
+  </main>
+  
+};

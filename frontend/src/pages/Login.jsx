@@ -21,7 +21,8 @@ export default function LoginPage() {
   if (currentUser) return <Navigate to="/" />;
 
   return <>
-    <h1>Login</h1>
+  <section id='login'>
+    <h1>Welcome Back!</h1>
     <form onSubmit={handleSubmit} aria-labelledby="login-heading">
       <h2 id='login-heading'>Log back in!</h2>
       <label htmlFor="username">Username</label>
@@ -32,6 +33,7 @@ export default function LoginPage() {
 
       <button>Log in!</button>
     </form>
+    </section>
     { !!errorText && <p>{errorText}</p> }
   </>;
 }

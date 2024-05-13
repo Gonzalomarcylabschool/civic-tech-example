@@ -12,8 +12,6 @@ class User {
     this.id = id;
     this.username = username;
     this.#passwordHash = password_hash;
-    this.createdAt = new Date();
-    this.updatedAt = new Date();
     this.email = email;
     this.firstName = first_name;
     this.lastName = last_name;
