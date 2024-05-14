@@ -48,9 +48,9 @@ class User {
     // hash the plain-text password using bcrypt before storing it in the database
     const passwordHash = await authUtils.hashPassword(password);
 
-    const query = `INSERT INTO users (username, password_hash, email, first_name, last_name)
-      VALUES (?, ?) RETURNING *`;
-    const { rows } = await knex.raw(query, [username, passwordHash, email, firstName, lastName]);
+    const query = `INSERT INTO users (username, password_hash, email, first_name, last_name, bio)
+      VALUES (?, ?, ?, ?, ?, ?) RETURNING *`;
+    const { rows } = await knex.raw(query, [username, passwordHash, email, firstName, lastName, '']);
     const user = rows[0];
     return new User(user);
   }
@@ -88,6 +88,18 @@ class User {
       RETURNING *
     `;
     const { rows } = await knex.raw(query, [firstName, lastName, id]);
+    const updatedUser = rows[0];
+    return updatedUser ? new User(updatedUser) : null;
+  }
+
+  static async updateBio(id, bio) {
+    const query = `
+      UPDATE users
+      SET bio=?
+      WHERE id=?
+      RETURNING *
+    `;
+    const { rows } = await knex.raw(query, [bio, id]);
     const updatedUser = rows[0];
     return updatedUser ? new User(updatedUser) : null;
   }

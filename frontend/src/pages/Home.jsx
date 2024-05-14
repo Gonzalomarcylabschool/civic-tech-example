@@ -1,11 +1,9 @@
 import '../index.css';
 export default function HomePage() {
   return <main id='unique-page'>
-  <section id='homeId'>
+  <section id='homeId' className='main page sections'>
     <h1>Welcome to Script Academy!</h1>
     <p>Learn to code and change the world!</p>
-  </section>
-  <section >
     <figure>
       <img
         id='homeImg'
@@ -13,6 +11,9 @@ export default function HomePage() {
         alt='students on their computers coding together'
       />
     </figure>
+  </section>
+  <section >
+    
   </section>
   </main>
   

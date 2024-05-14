@@ -1,0 +1,7 @@
+#root{
+scrollbar-width: none; /* Firefox */
+-ms-overflow-style: none; /* Internet Explorer/Edge */
+}
+#root::-webkit-scrollbar {
+display: none;
+}

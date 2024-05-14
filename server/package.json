@@ -10,7 +10,7 @@
     "connect": "psql -U postgres -d react_auth_example",
     "migrate": "knex migrate:latest",
     "migrate:make": "knex migrate:make",
-    "migrate:rollback": "knex migrate:rollback",
+    "rollback": "knex migrate:rollback",
     "seed": "knex seed:run",
     "seed:make": "knex seed:make",
     "lint": "eslint . --fix"

@@ -9,12 +9,12 @@ export default function UsersPage() {
     getAllUsers().then(setUsers);
   }, []);
 
-  return <>
+  return <main>
     <h1>Users</h1>
     <ul>
       {
         users.map((user) => <li key={user.id}><UserLink user={user} /></li>)
       }
     </ul>
-  </>;
+  </main>;
 }

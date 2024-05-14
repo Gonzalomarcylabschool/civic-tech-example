@@ -21,7 +21,7 @@ export default function SignUpPage() {
     setErrorText('');
     if (!username || !password) return setErrorText('Missing username or password');
 
-    const [user, error] = await createUser({ username, password });
+    const [user, error] = await createUser({ username, password, email, firstName, lastName});
     if (error) return setErrorText(error.message);
 
     setCurrentUser(user);
@@ -39,10 +39,6 @@ export default function SignUpPage() {
 
   return (
       <main className="sign-up-page">
-        <div className="left">
-          <h1>Sign Up</h1>
-          <p>Start your path to changing the world</p>
-        </div>
         <section id="signUpSection">
           <figure>
             <img
@@ -99,6 +95,7 @@ export default function SignUpPage() {
               value={lastName}
             />
             <p>Ready to Log in {'->'} <a href="#">click here</a></p>
+            <br />
             <button>Sign Up Now!</button>
           </form>
           {!!errorText && <p>{errorText}</p>}

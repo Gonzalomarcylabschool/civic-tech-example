@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
 import { logUserIn } from "../adapters/auth-adapter";
 import CurrentUserContext from "../contexts/current-user-context";
+import '../../src/index.css';
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ export default function LoginPage() {
 
   if (currentUser) return <Navigate to="/" />;
 
-  return <>
+  return <main>
   <section id='login'>
     <h1>Welcome Back!</h1>
     <form onSubmit={handleSubmit} aria-labelledby="login-heading">
@@ -35,5 +36,5 @@ export default function LoginPage() {
     </form>
     </section>
     { !!errorText && <p>{errorText}</p> }
-  </>;
+  </main>;
 }

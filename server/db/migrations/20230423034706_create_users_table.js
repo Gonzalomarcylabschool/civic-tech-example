@@ -9,6 +9,7 @@ exports.up = (knex) => knex.schema.createTable('users', (table) => {
   table.string('email').notNullable().unique();
   table.string('first_name').notNullable();
   table.string('last_name').notNullable();
+  table.text('bio').notNullable().defaultTo('');
   table.timestamps(true, true);
 });
 

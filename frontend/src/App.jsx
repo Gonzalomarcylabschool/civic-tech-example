@@ -9,6 +9,7 @@ import UserContext from './contexts/current-user-context';
 import { checkForLoggedInUser } from './adapters/auth-adapter';
 import UsersPage from './pages/Users';
 import UserPage from './pages/User';
+import '../src/index.css';
 
 export default function App() {
   const { setCurrentUser } = useContext(UserContext);
@@ -18,7 +19,7 @@ export default function App() {
 
   return <>
     <SiteHeadingAndNav />
-    <main>
+    <main id='content'>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<LoginPage />} />
