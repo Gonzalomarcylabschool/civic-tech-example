@@ -38,16 +38,17 @@ export default function SignUpPage() {
   };
 
   return (
-    
-      
-      <main className="main-content">
-        <h1>Sign Up</h1>
+      <main className="sign-up-page">
+        <div className="left">
+          <h1>Sign Up</h1>
+          <p>Start your path to changing the world</p>
+        </div>
         <section id="signUpSection">
           <figure>
             <img
               id="signUpImg"
-              src="https://images.pexels.com/photos/5935244/pexels-photo-5935244.jpeg"
-              alt="people having fun"
+              src="https://bootcamprankings.com/wp-content/uploads/2021/11/Best-Bootcamps-for-High-School-Students-in-2022.jpeg"
+              alt="students on their computers coding together"
             />
           </figure>
           <form onSubmit={handleSubmit} onChange={handleChange} aria-labelledby="create-heading">

@@ -10,7 +10,7 @@ export default function SiteHeadingAndNav() {
   return (
     <header>
       <a id="logo" href="/">
-        Make your Wish
+        Script Academy
       </a>
       <nav className={showNav ? "show-nav" : ""}>
         {/* Hamburger icon */}
