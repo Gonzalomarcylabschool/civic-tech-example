@@ -1,7 +1,6 @@
 *{
   box-sizing: border-box;
   padding: 0;
-  margin: 0;
   font-style: roboto;
 }
 
@@ -26,6 +25,7 @@ h1 {
 
 img{
   max-width: 700px;
+  max-height: 650px;
 }
 
 
@@ -35,6 +35,13 @@ input, label {
 
 input {
   margin-bottom: 1rem;
+}
+
+#logo {
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: #201e1f;
+  font-weight: 500;
 }
 
 header{
@@ -50,9 +57,10 @@ header{
   padding: 20px 5%;
   z-index:1000;
 }
+
 header.sticky{
 padding:10px  ;
-background:#fff;
+background:#feefdd;
 color: #201e1f;
 }
 /* TODO fix this */
@@ -60,7 +68,9 @@ color: #201e1f;
   padding-top: 0; 
 }
  */
-
+/* #logo.sticky{
+  color: #201e1f;
+} */
 
 header.sticky ul li a{
   color:#201e1f;
@@ -84,12 +94,6 @@ html {
  flex-direction: column;
  justify-content: center;
  align-items: center;
-}
-
-#logo {
-  font-size: 1.5rem;
-  text-decoration: none;
-  color: #FFF;
 }
 
 nav ul {
@@ -147,6 +151,35 @@ form {
   width: 30%;
   min-width: 20rem;
 }
+
+.modal-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(186, 186, 186, 0.75); 
+  z-index: 1000; /* Make sure the modal is on top */
+}
+
+.modal{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  background-color: #feefdd;
+  padding: 1rem;
+  border: 1px solid #CCC;
+  margin: 1rem auto;
+  border-radius: .5rem;
+  box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.1);
+  width: 30%;
+  min-width: 20rem;
+}
+
 input[ type="text" ], input[ type="email" ], input[ type="password" ]{
   padding: 0.5rem;
   border: 1px solid #CCC;
@@ -167,9 +200,9 @@ button:hover{
   background: #50B2C0;
   transition: background-color 0.2s ease; 
 }
-/* automatically added by NavLink component */
+
 .active {
-  color: #faaa8d;
+  color: #201e1f;
   font-weight: bold;
   font-style: italic;
 }
@@ -184,13 +217,10 @@ button:hover{
 }
 #signUpImg {
   width: 90%;
-  /* max-height: 5000rem; */
   height: 90%;
 }
 
 
-
-/* Hamburger icon styles */
 .hamburger {
   display: none; /* Hide the hamburger icon by default */
   cursor: pointer;
@@ -205,8 +235,9 @@ button:hover{
   background-color: #50B2C0;
 }
 
-#homeId {
- width: 100%;
+
+.mainPageSections {
+  width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -214,45 +245,93 @@ button:hover{
   align-items: center;
 }
 
+.sectionTwo{
+  max-width: 1200px;
+}
+
+.sectionTwo h2{
+  font-size: 4rem;
+  margin: 1rem 0;
+  position: relative;
+  top: 200px;
+}
+
+.infoSection{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+}
+.infoSectionImg{
+  z-index: -1;
+}
 
 .left{
   width: 60%;
-  
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* justify-content: start; */
 }
-/* Media query for smaller screens */
+.btt{
+  position: fixed;
+  bottom: .2rem;
+  right: .2rem;
+  background-color: #faaa8d;
+  color: #201e1f;
+  padding: .2rem;
+  border-radius: .5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.btt:hover{
+  background-color: #201e1f;
+  color: #feefdd;
+  transition: background-color 0.2s ease;
+}
 @media screen and (max-width: 568px) {
-  /* Show the hamburger icon */
   .hamburger {
     display: block;
     background-color: #feefdd;
     width: 2rem;
-    height: 2rem; /* Adjust the height to make it a square */
-    padding: 0.5rem; /* Add some padding for better clickability */
+    height: 2rem;
+    padding: 0.5rem;
   }
 
-  /* Hide the navigation links by default */
   nav ul {
     display: none;
   }
-
-  /* Show the navigation links when the hamburger is clicked */
+  main{
+    padding: 1rem;
+  }
+  p{
+    font-size: 1.2rem;
+  }
   .show-nav ul {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
+
   #signUpSection {
-    display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    margin: 1rem auto;
     width: 90%;
-}
+  }
 
-}
+  form {
+    width: 90%;
+    margin: 1rem;
+  }
 
+  .sectionTwo h2 {
+    font-size: 2.5rem;
+    top: 100px;
+  }
+
+  .infoSection {
+    flex-direction: column;
+  }
+
+  .left {
+    width: 100%;
+    text-align: center;
+  }
+  
+}

@@ -94,7 +94,7 @@ export default function SignUpPage() {
               onChange={handleChange}
               value={lastName}
             />
-            <p>Ready to Log in {'->'} <a href="#">click here</a></p>
+            <p>Ready to Log in {'->'} <a href="/login">click here</a></p>
             <br />
             <button>Sign Up Now!</button>
           </form>

@@ -1,30 +1,64 @@
-import { useNavigate } from "react-router-dom";
-import { updateUsername } from "../adapters/user-adapter";
+import React, { useState } from 'react';
+import Modal from 'react-modal'; // Import the modal library
+import { useNavigate } from 'react-router-dom';
+import { updateUsername } from '../adapters/user-adapter';
+
+Modal.setAppElement('#root'); // Set the app element for accessibility
 
 export default function UpdateUsernameForm({ currentUser, setCurrentUser }) {
   const navigate = useNavigate();
-  const handleSubmit = async (event) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [formData, setFormData] = useState(null);
+
+  const handleSubmit = (event) => {
     event.preventDefault();
-    const formData = new FormData(event.target);
-    const [user, error] = await updateUsername(Object.fromEntries(formData));
-    // If our user isn't who they say they are
-    // (an auth error on update) log them out
-    // We added the httpStatus as a custom cause in our error
+    const data = new FormData(event.target);
+    setFormData(Object.fromEntries(data));
+    setIsModalOpen(true);
+  };
+
+  const handleConfirm = async () => {
+    const [user, error] = await updateUsername(formData);
+    setIsModalOpen(false);
+
     if (error?.cause > 400 && error?.cause < 500) {
       setCurrentUser(null);
       return navigate('/');
     }
 
     setCurrentUser(user);
-    event.target.reset();
+    document.querySelector('form').reset();
   };
 
-  return <form onSubmit={handleSubmit} aria-labelledby="update-heading">
-    <h2 id="update-heading">Update User {currentUser.username} </h2>
-    <label htmlFor='username'>New Username</label>
-    <input type='text' id='username' name='username' />
-    <input type="hidden" name="id" value={currentUser.id} />
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
 
-    <button>Update Username</button>
-  </form>;
+  return (
+    <>
+      <form onSubmit={handleSubmit} aria-labelledby="update-heading">
+        <h2 id="update-heading">Update User {currentUser.username}</h2>
+        <label htmlFor='username'>New Username</label>
+        <input type='text' id='username' name='username' />
+        <input type="hidden" name="id" value={currentUser.id} />
+
+        <button>Update Username</button>
+      </form>
+
+      <Modal
+        overlayClassName='modal-overlay'
+        className='modal'
+        isOpen={isModalOpen}
+        onRequestClose={handleCancel}
+        contentLabel="Confirm Update"
+      >
+        <h2>Confirm Update</h2>
+        <p>Are you sure you want to update the username?</p>
+        <div>
+          <button onClick={handleConfirm}>Yes</button>
+          <button onClick={handleCancel}>No</button>
+        </div>
+      </Modal>
+    </>
+  );
 }
