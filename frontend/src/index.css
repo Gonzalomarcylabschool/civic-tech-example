@@ -11,10 +11,18 @@ body {
   color: #201e1f;
 }
 
+main {
+  margin-top: 1rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
 #content {
-  padding-top: 3rem; /* Adjust this value based on the height of your header */
-  transition: padding-top 0.6s; /* Smooth transition for padding */
-  z-index: 1; /* Ensure content stays above the header */
+  /* padding-top: 3rem;  */
+  transition: padding-top 0.6s; 
+  z-index: 1; 
 }
 
 h1 {
@@ -46,7 +54,6 @@ input {
 
 header{
   position: fixed;
-  /* display: block; */
   top: 0;
   left: 0;
   width: 100%;
@@ -54,12 +61,12 @@ header{
   justify-content: space-between;
   align-items: center;
   transition: 0.6s;
-  padding: 20px 5%;
+  padding: 1rem 5%;
   z-index:1000;
 }
 
 header.sticky{
-padding:10px  ;
+padding:.5rem  ;
 background:#feefdd;
 color: #201e1f;
 }
@@ -121,8 +128,7 @@ nav a::after {
   bottom: -5px; /* Adjust the distance of the glow from the text */
   left: 0;
   width: 100%;
-  height: 2px; /* Adjust the height of the glow */
-  border-radius: 20%;
+  height: 2px; 
   background-color: #fff; /* Color of the glow */
   opacity: 0; /* Initially invisible */
   transition: opacity 0.3s ease; /* Smooth transition for the glow */
@@ -232,7 +238,7 @@ button:hover{
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #50B2C0;
+  background-color: #feefdd;
 }
 
 
