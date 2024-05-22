@@ -8,7 +8,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://0.0.0.0:3000',
+        target: 'https://civic-tech-example-server.onrender.com',
         changeOrigin: true,
         secure: false,
         ws: true,
