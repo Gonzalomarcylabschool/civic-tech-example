@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import CurrentUserContext from "../contexts/current-user-context";
 import '../index.css'
+import logoSVG from '../../public/8jI6O001.svg'
 
 export default function SiteHeadingAndNav() {
   const { currentUser } = useContext(CurrentUserContext);
@@ -40,6 +41,7 @@ export default function SiteHeadingAndNav() {
   return (
     <header>
       <a id="logo" href="/">
+        <img id="movement" src={logoSVG} alt="Script Academy logo" />
         <p>Script Academy</p>
       </a>
       <nav className={showNav ? "show-nav" : ""}>
